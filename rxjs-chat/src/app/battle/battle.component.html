@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col" *ngIf="myPokemon">
+      <h1>Your Pokemon</h1>
+      <img class="pokemon" [src]="myPokemon['img']" alt="your pokemon">
+      <p class="border text-center">Health: {{myPokemon.health}}</p>
+      <form *ngIf="myPokemon" class="mt-4" (ngSubmit)="attack()">
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="choice.move" type="radio" name="move" id="move1"
+            [value]="myPokemon.move1">
+          <label class="form-check-label" for="move1">
+            {{myPokemon.move1.name}}
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="choice.move" type="radio" name="move" id="move2"
+            [value]="myPokemon.move2">
+          <label class="form-check-label" for="move2">
+            {{myPokemon.move2.name}}
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="choice.move" type="radio" name="move" id="move3"
+            [value]="myPokemon.move3">
+          <label class="form-check-label" for="move3">
+            {{myPokemon.move3.name}}
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" [(ngModel)]="choice.move" type="radio" name="move" id="move4"
+            [value]="myPokemon.move4">
+          <label class="form-check-label" for="move4">
+            {{myPokemon.move4.name}}
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3 mb-3">Choose Move!</button>
+      </form>
+    </div>
+    <div *ngIf="foePokemon" class='col'>
+        <h1>Enemy Pokemon</h1>
+      <img class="pokemon" [src]="foePokemon.img"
+        alt="enemy pokemon">
+      <p class="border text-center">Health: {{foePokemon.health}} hp</p>
+    </div>
+  </div>
+
+
+  <div class="border bordr-dark shadow rounded">
+      <div class="row chat_box overflow-auto p-2">
+        <ul class="col-12 list-unstyled">
+          <li *ngFor="let message of messages">{{message}}</li>
+        </ul>
+      </div>
+        <div class="input-group">
+          <input class="form-control" [(ngModel)]="message" />
+          <div class="input-group-append">
+            <button class="btn btn-warning" (click)="sendMessage()">Send</button>
+          </div>
+        </div>
+    </div>
+  <!-- {{choice | json}} -->
+
+</div>

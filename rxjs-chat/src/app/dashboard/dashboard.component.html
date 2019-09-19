@@ -1,0 +1,25 @@
+<div class='container mt-5' *ngIf="user[0]['pokemon']">
+  <h1>Welcome {{user[0]['username']}}!</h1>
+  <p>Choose which of your pokemon you want to battle with!</p>
+  <form class="form-group" #pokemonForm="ngForm" (ngSubmit)="Battle()">
+    <label for="id">Your Fighter:</label>
+    <select class="form-control" name="pokemon" id="id" [(ngModel)]="Pokemon.index">
+      <option *ngFor="let pokemon of user[0]['pokemon']; let i = index" name="index" [value]="i">{{pokemon.name}}</option>
+    </select>
+    <button type="submit" class="btn btn-warning shadow-sm primary mt-3">Start battle!</button>
+  </form>
+  <!-- {{Pokemon | json}} -->
+  <div class="border bordr-dark shadow rounded">
+    <div class="row chat_box">
+      <ul class="col-12 list-unstyled">
+        <li *ngFor="let message of messages">{{message}}</li>
+      </ul>
+    </div>
+      <div class="input-group">
+        <input class="form-control" [(ngModel)]="message" />
+        <div class="input-group-append">
+          <button class="btn btn-warning" (click)="sendMessage()">Send</button>
+        </div>
+      </div>
+  </div>
+</div>

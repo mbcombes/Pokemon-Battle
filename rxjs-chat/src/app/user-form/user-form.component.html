@@ -1,0 +1,25 @@
+<div class="container border border-dark shadow-lg margin-curve">
+  <h1 class="display-4 text-center">Register</h1>
+  <form class='form group container' #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control" id='username' required minlength="3" name="username" [(ngModel)]="newUser.username" #username="ngModel">
+  <div *ngIf="username.invalid && (username.touched || username.dirty)" class="alert alert-danger">
+    <div *ngIf="username.errors.required">Username is required.</div>
+    <div *ngIf="username.errors.minlength">Username must be at least 3 characters long.</div>
+  </div>
+  <label for="email">Email:</label>
+  <input type="email" class="form-control" id="email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" required name="newUser.email" [(ngModel)]="newUser.email" #email="ngModel">
+  <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert alert-danger">
+        <div *ngIf="email.errors.required">Email is required.</div>
+        <div *ngIf="email.errors.pattern">Email must be in valid form.</div>
+    </div>
+  <label for="password">Password:</label>
+  <input type="password" class="form-control" id="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required name="newUser.password" [(ngModel)]="newUser.password" #password="ngModel">
+  <div *ngIf="password.invalid && (password.touched || password.dirty)" class="alert alert-danger">
+        <div *ngIf="password.errors.required">Password is required.</div>
+        <div *ngIf="password.errors.pattern">Password must be minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character(@$!%*?&).</div>
+    </div>
+  <button class='btn btn-warning shadow-sm mt-3 mb-3' type="submit" [disabled]="!userForm.form.valid">Register</button>
+  <!-- {{newUser | json}} -->
+</form>
+</div>
